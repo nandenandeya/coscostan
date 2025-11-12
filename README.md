@@ -1,7 +1,7 @@
- # LAPORAN APLIKASI MANAJEMEN KOS – Kos2tan
+ # LAPORAN APLIKASI PRAKTIKUM PEMROGRAMAN WEB
 
 ## 1. JUDUL APLIKASI
-Sistem Manajemen Kos "Kos Chibi Haven"
+Sistem Manajemen Kos "CosCosTan"
 
 ## 2. LATAR BELAKANG
 Aplikasi ini dikembangkan untuk memenuhi tugas mata kuliah Pemrograman Berorientasi Objek. Aplikasi manajemen kos dirancang untuk membantu pemilik kos dalam mengelola properti mereka dan memberikan informasi yang jelas kepada calon penghuni.
