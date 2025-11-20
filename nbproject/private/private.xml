@@ -3,6 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/coscostan/src/gui/DashboardAdmin.java</file>
+=======
             <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/gui/AdminLogin.java</file>
             <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/gui/AdminTipeKamar.java</file>
             <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/gui/Homepage_PickRole.java</file>
@@ -13,6 +16,7 @@
             <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/gui/AdminDashboard.java</file>
             <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/model/Request.java</file>
             <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/dao/RequestDAO.java</file>
+>>>>>>> df7f465c940c6c72990e6c659e45c0a792169d81
         </group>
     </open-files>
 </project-private>

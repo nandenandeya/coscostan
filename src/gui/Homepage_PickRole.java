@@ -30,8 +30,8 @@ public class Homepage_PickRole extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        adminButton = new javax.swing.JButton();
+        visitorButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextPane1 = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
@@ -41,23 +41,23 @@ public class Homepage_PickRole extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jButton1.setBackground(new java.awt.Color(75, 75, 48));
-        jButton1.setFont(new java.awt.Font("Mona Sans ExtraLight", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Admin");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        adminButton.setBackground(new java.awt.Color(75, 75, 48));
+        adminButton.setFont(new java.awt.Font("Mona Sans ExtraLight", 0, 12)); // NOI18N
+        adminButton.setForeground(new java.awt.Color(255, 255, 255));
+        adminButton.setText("Admin");
+        adminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                adminButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(75, 75, 48));
-        jButton2.setFont(new java.awt.Font("Mona Sans ExtraLight", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Visitor");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        visitorButton.setBackground(new java.awt.Color(75, 75, 48));
+        visitorButton.setFont(new java.awt.Font("Mona Sans ExtraLight", 0, 12)); // NOI18N
+        visitorButton.setForeground(new java.awt.Color(255, 255, 255));
+        visitorButton.setText("Visitor");
+        visitorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                visitorButtonActionPerformed(evt);
             }
         });
 
@@ -78,9 +78,9 @@ public class Homepage_PickRole extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(jButton1)
+                        .addComponent(adminButton)
                         .addGap(32, 32, 32)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(visitorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,8 +97,8 @@ public class Homepage_PickRole extends javax.swing.JFrame {
                 .addComponent(jTextPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(adminButton)
+                    .addComponent(visitorButton))
                 .addGap(190, 190, 190))
         );
 
@@ -112,13 +112,13 @@ public class Homepage_PickRole extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_adminButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void visitorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_visitorButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,11 +146,11 @@ public class Homepage_PickRole extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton adminButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JButton visitorButton;
     // End of variables declaration//GEN-END:variables
 }

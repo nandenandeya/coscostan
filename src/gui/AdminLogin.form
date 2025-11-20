@@ -63,7 +63,11 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel4" min="-2" pref="85" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                              <Component id="passField" min="-2" pref="107" max="-2" attributes="0"/>
+=======
                               <Component id="passwordField" min="-2" pref="107" max="-2" attributes="0"/>
+>>>>>>> df7f465c940c6c72990e6c659e45c0a792169d81
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel3" min="-2" pref="85" max="-2" attributes="0"/>
@@ -88,7 +92,11 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
+<<<<<<< HEAD
+                      <Component id="passField" alignment="3" min="-2" max="-2" attributes="0"/>
+=======
                       <Component id="passwordField" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> df7f465c940c6c72990e6c659e45c0a792169d81
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -141,7 +149,11 @@
             <Property name="text" type="java.lang.String" value="Username: "/>
           </Properties>
         </Component>
+<<<<<<< HEAD
+        <Component class="javax.swing.JTextField" name="passField">
+=======
         <Component class="javax.swing.JTextField" name="passwordField">
+>>>>>>> df7f465c940c6c72990e6c659e45c0a792169d81
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -155,6 +167,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="usernameField">
+<<<<<<< HEAD
+=======
         </Component>
         <Component class="javax.swing.JButton" name="backButton">
           <Properties>
@@ -172,6 +186,7 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backButtonActionPerformed"/>
           </Events>
+>>>>>>> df7f465c940c6c72990e6c659e45c0a792169d81
         </Component>
       </SubComponents>
     </Container>
