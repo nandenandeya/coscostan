@@ -352,4 +352,26 @@ public class PenghuniDAO implements DAO<Penghuni> {
         
         return count > 0;
     }
+    public int countTotalPenghuniAktif() {
+        String sql = "SELECT * FROM penghuni";
+        int count = 0;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                java.sql.Date tglKeluar = rs.getDate("tanggal_keluar");
+                if (rs.wasNull() || tglKeluar == null) {
+                    count++;
+                }
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            System.err.println("Error counting penghuni aktif manual: " + ex.getMessage());
+        }
+
+        return count;
+    }
 }
