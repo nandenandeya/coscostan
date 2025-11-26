@@ -1,8 +1,8 @@
-package dao;
+package coscostan.dao;
 
-import model.Penghuni;
-import util.DatabaseConnection;
-import util.DateUtil;
+import coscostan.model.Penghuni;
+import coscostan.util.DatabaseConnection;
+import coscostan.util.DateUtil;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

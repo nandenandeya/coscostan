@@ -2,7 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gui;
+package coscostan.gui;
+import coscostan.dao.KamarDAOUser;
+import coscostan.dao.PenghuniDAO;
+import coscostan.dao.TipeKamarDAO;
+import java.util.Map;       
+import java.util.HashMap;
+import javax.swing.table.DefaultTableModel;
+import java.awt.Desktop;
+import java.net.URI;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -11,12 +21,16 @@ package gui;
 public class UserDashboard1 extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UserDashboard1.class.getName());
+    private KamarDAOUser kamarDAOUser;
 
     /**
      * Creates new form UserDashboard
      */
     public UserDashboard1() {
         initComponents();
+        kamarDAOUser = new KamarDAOUser();
+        loadDataToTable();
+        loadStatistics();
     }
 
     /**
@@ -49,7 +63,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelKamar = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -60,22 +74,22 @@ public class UserDashboard1 extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        kamarTotalLabel = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        linkButton = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        totalLabel = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
+        sisaKamar = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
@@ -398,7 +412,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
                 .addGap(414, 414, 414))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelKamar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -448,8 +462,8 @@ public class UserDashboard1 extends javax.swing.JFrame {
                 "Id Kamar", "Tipe Kamar", "No Kamar", "Harga", "Lama Sewa"
             }
         ));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tabelKamar.setShowGrid(true);
+        jScrollPane1.setViewportView(tabelKamar);
 
         jPanel6.setBackground(new java.awt.Color(22, 51, 61));
 
@@ -509,7 +523,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
                 .addComponent(jLabel78)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -545,7 +559,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 93, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)
                         .addContainerGap())))
         );
 
@@ -571,10 +585,10 @@ public class UserDashboard1 extends javax.swing.JFrame {
         jPanel13.setBackground(new java.awt.Color(5, 11, 14));
         jPanel13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 48)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 204));
-        jLabel6.setText("30");
+        kamarTotalLabel.setBackground(new java.awt.Color(255, 255, 204));
+        kamarTotalLabel.setFont(new java.awt.Font("SansSerif", 0, 48)); // NOI18N
+        kamarTotalLabel.setForeground(new java.awt.Color(255, 255, 204));
+        kamarTotalLabel.setText("30");
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 204));
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -595,7 +609,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(jLabel6))
+                        .addComponent(kamarTotalLabel))
                     .addComponent(jLabel9)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
@@ -608,7 +622,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addComponent(kamarTotalLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addGap(17, 17, 17))
@@ -627,7 +641,12 @@ public class UserDashboard1 extends javax.swing.JFrame {
         jLabel22.setForeground(new java.awt.Color(255, 255, 204));
         jLabel22.setText("Kontak Kami Segera!");
 
-        jButton2.setText("Link WA");
+        linkButton.setText("Link WA");
+        linkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -641,17 +660,17 @@ public class UserDashboard1 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addComponent(linkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(linkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel21)
                 .addGap(20, 20, 20))
         );
@@ -688,10 +707,10 @@ public class UserDashboard1 extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 204));
         jLabel11.setText("Total Penghuni");
 
-        jLabel15.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel15.setFont(new java.awt.Font("SansSerif", 0, 48)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 204));
-        jLabel15.setText("60");
+        totalLabel.setBackground(new java.awt.Color(255, 255, 204));
+        totalLabel.setFont(new java.awt.Font("SansSerif", 0, 48)); // NOI18N
+        totalLabel.setForeground(new java.awt.Color(255, 255, 204));
+        totalLabel.setText("60");
 
         jLabel20.setBackground(new java.awt.Color(255, 255, 204));
         jLabel20.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -711,7 +730,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jLabel15)))
+                        .addComponent(totalLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
@@ -720,7 +739,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel15)
+                .addComponent(totalLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addGap(16, 16, 16))
@@ -735,10 +754,10 @@ public class UserDashboard1 extends javax.swing.JFrame {
         jLabel23.setForeground(new java.awt.Color(255, 255, 204));
         jLabel23.setText("Sisa Kamar Kosong");
 
-        jLabel24.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel24.setFont(new java.awt.Font("SansSerif", 0, 48)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 255, 204));
-        jLabel24.setText("3");
+        sisaKamar.setBackground(new java.awt.Color(255, 255, 204));
+        sisaKamar.setFont(new java.awt.Font("SansSerif", 0, 48)); // NOI18N
+        sisaKamar.setForeground(new java.awt.Color(255, 255, 204));
+        sisaKamar.setText("3");
 
         jLabel25.setBackground(new java.awt.Color(255, 255, 204));
         jLabel25.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -753,7 +772,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGap(114, 114, 114)
-                        .addComponent(jLabel24))
+                        .addComponent(sisaKamar))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -767,7 +786,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel24)
+                .addComponent(sisaKamar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel23)
                 .addGap(16, 16, 16))
@@ -796,7 +815,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                 .addGap(414, 414, 414))
         );
 
@@ -810,19 +829,19 @@ public class UserDashboard1 extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(175, 175, 175)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -839,7 +858,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
                             .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE))
+                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1728,7 +1747,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
                         .addGap(9, 9, 9))
                     .addGroup(jPanel38Layout.createSequentialGroup()
                         .addComponent(jPanel55, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(12, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel38Layout.setVerticalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1789,7 +1808,7 @@ public class UserDashboard1 extends javax.swing.JFrame {
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1972,7 +1991,10 @@ public class UserDashboard1 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1158, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1998,6 +2020,84 @@ public class UserDashboard1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
+    private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
+         try {
+        String phoneNumber = "6281210697425"; // Ganti dengan nomor WA admin
+        
+        // Hanya buka chat WA tanpa pesan default
+        String url = "https://wa.me/" + phoneNumber;
+        
+        Desktop.getDesktop().browse(new URI(url));
+        
+        System.out.println("Membuka WhatsApp chat: " + url);
+        
+    } catch (Exception e) {
+        System.err.println("Error: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, 
+            "Error membuka WhatsApp. Silakan hubungi: 081234567890");
+    }
+    }//GEN-LAST:event_linkButtonActionPerformed
+    private void loadDataToTable() {
+    try {
+        System.out.println("Memuat data ke tabel...");
+        DefaultTableModel model = (DefaultTableModel) tabelKamar.getModel();
+        kamarDAOUser.fillTableModel(model);
+        System.out.println("Data berhasil dimuat!");
+        
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+     
+     private void filterByTipe(String tipeKamar) {
+         try {
+        DefaultTableModel model = (DefaultTableModel) tabelKamar.getModel();
+        model.setRowCount(0); // Clear existing data
+        
+        if (tipeKamar.equals("ALL")) {
+            loadDataToTable(); // Tampilkan semua data
+        } else {
+            var kamars = kamarDAOUser.getKamarByTipeForDashboard(tipeKamar);
+            
+            for (var kamar : kamars) {
+                String hargaFormatted = "Rp " + String.format("%,.0f", kamar.getHarga());
+                
+                Object[] rowData = {
+                    "KMR" + kamar.getIdKamar(),
+                    kamar.getTipeKamar(),
+                    "Kamar " + kamar.getNomorKamar(),
+                    hargaFormatted,
+                    kamar.getLamaSewa()
+                };
+                model.addRow(rowData);
+            }
+        }
+        
+    } catch (Exception e) {
+        System.out.println("Error filtering data: " + e.getMessage());
+        e.printStackTrace();
+    }
+    }
+    private void loadStatistics() {
+            try {
+                Map<String, Integer> stats = kamarDAOUser.getKostStatistics();
+
+                // Set ke label atau komponen UI
+               totalLabel.setText(String.valueOf(stats.get("totalPenghuni")));  // HANYA ANGKA
+               kamarTotalLabel.setText(String.valueOf(stats.get("totalKamar"))); // HANYA ANGKA
+               sisaKamar.setText(String.valueOf(stats.get("kamarTersedia")));
+
+               System.out.println("Statistics loaded: " + stats);
+
+            } catch (Exception e) {
+                System.err.println("Error loading statistics: " + e.getMessage());
+                // Set default values - HANYA ANGKA
+                totalLabel.setText("10");           // HANYA ANGKA
+                kamarTotalLabel.setText("30");      // HANYA ANGKA  
+                sisaKamar.setText("19 Kamar Kosong");
+            }
+        }
     /**
      * @param args the command line arguments
      */
@@ -2025,7 +2125,6 @@ public class UserDashboard1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -2048,7 +2147,6 @@ public class UserDashboard1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel113;
     private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -2058,7 +2156,6 @@ public class UserDashboard1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -2096,7 +2193,6 @@ public class UserDashboard1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
@@ -2162,12 +2258,16 @@ public class UserDashboard1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel kamarTotalLabel;
+    private javax.swing.JButton linkButton;
+    private javax.swing.JLabel sisaKamar;
+    private javax.swing.JTable tabelKamar;
+    private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }

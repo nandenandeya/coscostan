@@ -1,8 +1,6 @@
-package gui;
-import dao.AdminDAO;
-import util.ValidationUtil;
-import java.awt.event.ActionEvent;
-
+package coscostan.gui;
+import coscostan.gui.AdminLogin;
+import coscostan.gui.UserDashboard1;
 
 public class LoginForm extends javax.swing.JFrame {
     
@@ -22,6 +20,7 @@ public class LoginForm extends javax.swing.JFrame {
         userButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextPane1 = new javax.swing.JTextPane();
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setBackground(new java.awt.Color(102, 102, 0));
         jLabel1.setText("jLabel1");
@@ -75,7 +74,7 @@ public class LoginForm extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,28 +87,27 @@ public class LoginForm extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adminButton)
                     .addComponent(userButton))
-                .addGap(190, 190, 190))
+                .addGap(1097, 1097, 1097))
         );
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Raissa\\Downloads\\4444.jpg")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 665, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 342, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 303, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -117,14 +115,13 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         this.setVisible(false);
-        AdminLogin adminLogin = new AdminLogin(this);
+        AdminLogin adminLogin = new AdminLogin();
         adminLogin.setVisible(true);
     }//GEN-LAST:event_adminButtonActionPerformed
 
     private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userButtonActionPerformed
         this.setVisible(false);
-    
-        User userDashboard = new User(this);
+        UserDashboard1 userDashboard = new UserDashboard1();
         userDashboard.setVisible(true);
     }//GEN-LAST:event_userButtonActionPerformed
 
@@ -138,6 +135,7 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JButton adminButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JButton userButton;

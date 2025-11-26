@@ -1,7 +1,7 @@
-package dao;
+package coscostan.dao;
 
-import model.TipeKamar;
-import util.DatabaseConnection;
+import coscostan.model.TipeKamar;
+import coscostan.util.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

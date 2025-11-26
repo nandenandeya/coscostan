@@ -1,4 +1,4 @@
-package dao;
+package coscostan.dao;
 
 import java.util.List;
 

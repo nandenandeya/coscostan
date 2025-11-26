@@ -1,4 +1,4 @@
-package model;
+package coscostan.model;
 
 public class TipeKamar {
     private int idTipeKamar;

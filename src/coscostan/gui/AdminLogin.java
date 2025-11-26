@@ -1,15 +1,23 @@
-package gui;
-import dao.AdminDAO;
-import util.ValidationUtil;
-import java.awt.event.ActionEvent;
+package coscostan.gui;
+import coscostan.gui.Admin;
+import coscostan.dao.AdminDAO;
+import coscostan.util.ValidationUtil;
+import javax.swing.JOptionPane;
 
 
-public class LoginForm extends javax.swing.JFrame {
+public class AdminLogin extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginForm.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdminLogin.class.getName());
+    
+    private LoginForm parentForm;
+    private AdminDAO adminDAO;
 
-    public LoginForm() {
+    public AdminLogin() {
+        this.parentForm = parentForm;
+        this.adminDAO = new AdminDAO();
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -18,10 +26,14 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        adminButton = new javax.swing.JButton();
-        userButton = new javax.swing.JButton();
+        loginAdminButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextPane1 = new javax.swing.JTextPane();
+        jLabel4 = new javax.swing.JLabel();
+        usernameField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        passField = new javax.swing.JTextField();
+        cancelButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setBackground(new java.awt.Color(102, 102, 0));
         jLabel1.setText("jLabel1");
@@ -30,34 +42,51 @@ public class LoginForm extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        adminButton.setBackground(new java.awt.Color(75, 75, 48));
-        adminButton.setFont(new java.awt.Font("Mona Sans ExtraLight", 0, 12)); // NOI18N
-        adminButton.setForeground(new java.awt.Color(255, 255, 255));
-        adminButton.setText("Admin");
-        adminButton.addActionListener(new java.awt.event.ActionListener() {
+        loginAdminButton.setBackground(new java.awt.Color(75, 75, 48));
+        loginAdminButton.setFont(new java.awt.Font("Mona Sans ExtraLight", 0, 12)); // NOI18N
+        loginAdminButton.setForeground(new java.awt.Color(255, 255, 255));
+        loginAdminButton.setText("Login");
+        loginAdminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminButtonActionPerformed(evt);
-            }
-        });
-
-        userButton.setBackground(new java.awt.Color(75, 75, 48));
-        userButton.setFont(new java.awt.Font("Mona Sans ExtraLight", 0, 12)); // NOI18N
-        userButton.setForeground(new java.awt.Color(255, 255, 255));
-        userButton.setText("Visitor");
-        userButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userButtonActionPerformed(evt);
+                loginAdminButtonActionPerformed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 28)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Let's Get Started");
+        jLabel2.setText("Welcome Admin!");
 
-        jTextPane1.setBackground(new java.awt.Color(0, 0, 0));
-        jTextPane1.setFont(new java.awt.Font("Mona Sans ExtraLight", 1, 14)); // NOI18N
-        jTextPane1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextPane1.setText("Find Your Perfect Room - Browse Available Kost");
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Username :");
+
+        usernameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Password  :");
+
+        passField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passFieldActionPerformed(evt);
+            }
+        });
+
+        cancelButton.setBackground(new java.awt.Color(75, 75, 48));
+        cancelButton.setFont(new java.awt.Font("Mona Sans ExtraLight", 0, 12)); // NOI18N
+        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,81 +94,124 @@ public class LoginForm extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(usernameField))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(passField)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(adminButton)
-                        .addGap(32, 32, 32)
-                        .addComponent(userButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addGap(48, 48, 48)
+                        .addComponent(loginAdminButton)
+                        .addGap(27, 27, 27)
+                        .addComponent(cancelButton)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(138, 138, 138)
+                .addGap(142, 142, 142)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adminButton)
-                    .addComponent(userButton))
-                .addGap(190, 190, 190))
+                    .addComponent(jLabel4)
+                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(passField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginAdminButton)
+                    .addComponent(cancelButton))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Raissa\\Downloads\\4444.jpg")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 665, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 342, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
-        this.setVisible(false);
-        AdminLogin adminLogin = new AdminLogin(this);
-        adminLogin.setVisible(true);
-    }//GEN-LAST:event_adminButtonActionPerformed
+    private void loginAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginAdminButtonActionPerformed
+        String username = usernameField.getText().trim();
+        String password = passField.getText().trim();
+        
+        // Validasi
+        if (!ValidationUtil.isNotEmpty(username) || !ValidationUtil.isNotEmpty(password)) {
+            JOptionPane.showMessageDialog(this, "Username dan password harus diisi!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Cek login
+        boolean isValid = adminDAO.validateLogin(username, password);
+        if (isValid) {
+            JOptionPane.showMessageDialog(this, "Login berhasil!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            
+            // Buka Admin Dashboard
+            Admin adminDashboard = new Admin(this, username);
+            adminDashboard.setVisible(true);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Username atau password salah!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
-    private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userButtonActionPerformed
-        this.setVisible(false);
-    
-        User userDashboard = new User(this);
-        userDashboard.setVisible(true);
-    }//GEN-LAST:event_userButtonActionPerformed
+    }//GEN-LAST:event_loginAdminButtonActionPerformed
+
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameFieldActionPerformed
+
+    private void passFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passFieldActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        parentForm.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
 
     public static void main(String args[]) {
 
-        java.awt.EventQueue.invokeLater(() -> new LoginForm().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new AdminLogin().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminButton;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JButton userButton;
+    private javax.swing.JButton loginAdminButton;
+    private javax.swing.JTextField passField;
+    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }

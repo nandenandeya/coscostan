@@ -1,4 +1,4 @@
-package model;
+package coscostan.model;
 
 import java.util.Date;
 

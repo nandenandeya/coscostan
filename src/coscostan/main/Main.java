@@ -1,6 +1,6 @@
-package main;
+package coscostan.main;
 
-import gui.LoginForm;
+import coscostan.gui.PickRole;
 import javax.swing.SwingUtilities;
 
 public class Main {
@@ -9,7 +9,7 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new LoginForm().setVisible(true);
+                new PickRole().setVisible(true);
             }
         });
     }

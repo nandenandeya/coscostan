@@ -1,7 +1,7 @@
-package dao;
+package coscostan.dao;
 
-import model.Admin;
-import util.DatabaseConnection;
+import coscostan.model.Admin;
+import coscostan.util.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

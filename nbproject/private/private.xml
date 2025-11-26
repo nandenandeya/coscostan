@@ -3,20 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/coscostan/src/gui/DashboardAdmin.java</file>
-=======
-            <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/gui/AdminLogin.java</file>
-            <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/gui/AdminTipeKamar.java</file>
-            <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/gui/Homepage_PickRole.java</file>
-            <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/gui/LoginForm.java</file>
-            <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/gui/MainMenu.java</file>
-            <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/gui/Admin.java</file>
-            <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/gui/User.java</file>
-            <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/gui/AdminDashboard.java</file>
-            <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/model/Request.java</file>
-            <file>file:/C:/KULIAH/SEMESTER%203/TUGAS/PRAKTIKUM/PBO/coscostan/src/dao/RequestDAO.java</file>
->>>>>>> df7f465c940c6c72990e6c659e45c0a792169d81
+            <file>file:/C:/coscostan/src/gui/UserDashboard1.java</file>
+            <file>file:/C:/coscostan/src/gui/AdminLogin.java</file>
+            <file>file:/C:/coscostan/src/gui/Admin.java</file>
+            <file>file:/C:/coscostan/src/gui/LoginForm.java</file>
+            <file>file:/C:/coscostan/src/gui/MainMenu.java</file>
+            <file>file:/C:/coscostan/src/util/DatabaseConnection.java</file>
+            <file>file:/C:/coscostan/src/util/TestConnection.java</file>
+            <file>file:/C:/coscostan/src/gui/AdminLogin1.java</file>
+            <file>file:/C:/coscostan/src/model/Kamar.java</file>
+            <file>file:/C:/coscostan/src/dao/KamarDAO.java</file>
+            <file>file:/C:/coscostan/src/gui/UserDashboard.java</file>
+            <file>file:/C:/coscostan/src/gui/User.java</file>
         </group>
     </open-files>
 </project-private>

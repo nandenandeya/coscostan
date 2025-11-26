@@ -1,12 +1,12 @@
-package gui;
+package coscostan.gui;
 
 import gui.AdminLogin;
-import dao.KamarDAO;
-import dao.PenghuniDAO;
-import dao.TipeKamarDAO;
-import model.Kamar;
-import model.Penghuni;
-import model.TipeKamar;
+import coscostan.dao.KamarDAO;
+import coscostan.dao.PenghuniDAO;
+import coscostan.dao.TipeKamarDAO;
+import coscostan.model.Kamar;
+import coscostan.model.Penghuni;
+import coscostan.model.TipeKamar;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import java.util.List;
@@ -1598,10 +1598,10 @@ public class Admin extends javax.swing.JFrame {
         PenghuniDAO penghuniDAO = new PenghuniDAO();
         
         // === HITUNG STATISTIK ===
-        java.util.List<model.Kamar> semuaKamar = kamarDAO.getAll();
-        java.util.List<model.Kamar> kamarTerisi = kamarDAO.getByStatus("terisi");
-        java.util.List<model.Kamar> kamarTersedia = kamarDAO.getByStatus("tersedia");
-        java.util.List<model.Kamar> kamarMaintenance = kamarDAO.getByStatus("maintenance");
+        java.util.List<coscostan.model.Kamar> semuaKamar = kamarDAO.getAll();
+        java.util.List<coscostan.model.Kamar> kamarTerisi = kamarDAO.getByStatus("terisi");
+        java.util.List<coscostan.model.Kamar> kamarTersedia = kamarDAO.getByStatus("tersedia");
+        java.util.List<coscostan.model.Kamar> kamarMaintenance = kamarDAO.getByStatus("maintenance");
         
         // === UPDATE LABEL STATISTIK ===
         totalKamarLabel.setText(String.valueOf(semuaKamar.size()));
@@ -1613,15 +1613,15 @@ public class Admin extends javax.swing.JFrame {
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) kamarTable.getModel();
         model.setRowCount(0); // Clear existing data
         
-        for (model.Kamar kamar : semuaKamar) {
+        for (coscostan.model.Kamar kamar : semuaKamar) {
             // Get tipe kamar (huruf)
-            model.TipeKamar tipe = tipeKamarDAO.getById(kamar.getIdTipeKamar());
+            coscostan.model.TipeKamar tipe = tipeKamarDAO.getById(kamar.getIdTipeKamar());
             String tipeKamar = tipe.getTipeKamar();
             
             // Get nama penghuni (jika ada)
             int IDPenghuni = 0;
             if (kamar.getIdPenghuni() != null) {
-                model.Penghuni penghuni = penghuniDAO.getById(kamar.getIdPenghuni());
+                coscostan.model.Penghuni penghuni = penghuniDAO.getById(kamar.getIdPenghuni());
                 if (penghuni != null) {
                     IDPenghuni = penghuni.getIdPenghuni();
                 }
@@ -1886,9 +1886,9 @@ public class Admin extends javax.swing.JFrame {
             model.setRowCount(0); // Clear existing data
 
             // Get all penghuni from database
-            java.util.List<model.Penghuni> semuaPenghuni = penghuniDAO.getAll();
+            java.util.List<coscostan.model.Penghuni> semuaPenghuni = penghuniDAO.getAll();
 
-            for (model.Penghuni penghuni : semuaPenghuni) {
+            for (coscostan.model.Penghuni penghuni : semuaPenghuni) {
 
                 java.util.Date tanggalMasuk = penghuni.getTanggalMasuk();
                 java.util.Date tanggalKeluar = penghuni.getTanggalKeluar();

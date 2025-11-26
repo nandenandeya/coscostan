@@ -1,9 +1,9 @@
-package dao;
+package coscostan.dao;
 
-import model.Admin;
-import model.TipeKamar;
-import model.Kamar;
-import model.Penghuni;
+import coscostan.model.Admin;
+import coscostan.model.TipeKamar;
+import coscostan.model.Kamar;
+import coscostan.model.Penghuni;
 import java.util.Date;
 import java.util.List;
 
