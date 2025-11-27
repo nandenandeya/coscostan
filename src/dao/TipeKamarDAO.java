@@ -8,27 +8,6 @@ import java.util.List;
 
 public class TipeKamarDAO implements DAO<TipeKamar> {
     
-    @Override
-    public boolean insert(TipeKamar tipeKamar) {
-        String sql = "INSERT INTO tipe_kamar (ukuran, fasilitas_kamar, tipe_kamar, harga_sewa, lama_sewa) VALUES (?, ?, ?, ?, ?)";
-        
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            
-            stmt.setString(1, tipeKamar.getUkuran());
-            stmt.setString(2, tipeKamar.getFasilitasKamar());
-            stmt.setString(3, tipeKamar.getTipeKamar());
-            stmt.setDouble(4, tipeKamar.getHargaSewa());
-            stmt.setString(5, tipeKamar.getLamaSewa());
-            
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
-            
-        } catch (SQLException ex) {
-            System.err.println("Error inserting tipe kamar: " + ex.getMessage());
-            return false;
-        }
-    }
     
     @Override
     public TipeKamar getById(int id) {
@@ -152,4 +131,64 @@ public class TipeKamarDAO implements DAO<TipeKamar> {
             return false;
         }
     }
+    
+    public boolean existsById(int id) {
+    String sql = "SELECT COUNT(*) FROM tipe_kamar WHERE id_tipe_kamar = ?";
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) return rs.getInt(1) > 0;
+
+    } catch (SQLException ex) {
+        System.err.println("Error checking ID tipe kamar: " + ex.getMessage());
+    }
+    return false;
+}
+
+    public boolean existsByTipe(String tipe) {
+    String sql = "SELECT COUNT(*) FROM tipe_kamar WHERE tipe_kamar = ?";
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setString(1, tipe);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) return rs.getInt(1) > 0;
+
+    } catch (SQLException ex) {
+        System.err.println("Error checking nama tipe kamar: " + ex.getMessage());
+    }
+    return false;
+}
+    
+    // Di TipeKamarDAO.java - GANTI method insert yang ada dengan ini:
+
+@Override
+public boolean insert(TipeKamar tipeKamar) {
+    // INSERT dengan ID manual (bukan auto-increment)
+    String sql = "INSERT INTO tipe_kamar (id_tipe_kamar, ukuran, fasilitas_kamar, tipe_kamar, harga_sewa, lama_sewa) VALUES (?, ?, ?, ?, ?, ?)";
+    
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+        stmt.setInt(1, tipeKamar.getIdTipeKamar());
+        stmt.setString(2, tipeKamar.getUkuran());
+        stmt.setString(3, tipeKamar.getFasilitasKamar());
+        stmt.setString(4, tipeKamar.getTipeKamar());
+        stmt.setDouble(5, tipeKamar.getHargaSewa());
+        stmt.setString(6, tipeKamar.getLamaSewa());
+        
+        int rowsAffected = stmt.executeUpdate();
+        return rowsAffected > 0;
+        
+    } catch (SQLException ex) {
+        System.err.println("Error inserting tipe kamar: " + ex.getMessage());
+        ex.printStackTrace(); // Tambahkan ini untuk detail error
+        return false;
+    }
+}
+
+    
+    
 }

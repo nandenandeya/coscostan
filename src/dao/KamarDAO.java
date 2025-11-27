@@ -275,25 +275,50 @@ public class KamarDAO implements DAO<Kamar> {
             return false;
         }
     }
+    public boolean updateStatusAndPenghuni(int idKamar, String status, Integer idPenghuni) {
+    String sql = "UPDATE kamars SET status = ?, id_penghuni = ? WHERE id_kamar = ?";
     
-    public int countByStatus(String status) {
-        String sql = "SELECT COUNT(*) FROM kamars WHERE status = ?";
-        int count = 0;
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
         
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            
-            stmt.setString(1, status);
-            ResultSet rs = stmt.executeQuery();
-            
-            if (rs.next()) {
-                count = rs.getInt(1);
-            }
-            
-        } catch (SQLException ex) {
-            System.err.println("Error counting kamars by status: " + ex.getMessage());
+        stmt.setString(1, status);
+        
+        // Handle nullable id_penghuni
+        if (idPenghuni != null) {
+            stmt.setInt(2, idPenghuni);
+        } else {
+            stmt.setNull(2, Types.INTEGER);
         }
         
-        return count;
+        stmt.setInt(3, idKamar);  // ✅ idKamar di parameter 3
+        
+        int rowsAffected = stmt.executeUpdate();
+        System.out.println("DEBUG KamarDAO: Update status, rows affected: " + rowsAffected);
+        return rowsAffected > 0;
+        
+    } catch (SQLException ex) {
+        System.err.println("Error updating kamar status: " + ex.getMessage());
+        ex.printStackTrace();
+        return false;
     }
+}
+    
+    public int countByTipeKamar(int idTipeKamar) {
+    String sql = "SELECT COUNT(*) AS total FROM kamars WHERE id_tipe_kamar = ?";
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+        stmt.setInt(1, idTipeKamar);
+        ResultSet rs = stmt.executeQuery();
+        
+        if (rs.next()) {
+            return rs.getInt("total");
+        }
+        
+    } catch (SQLException ex) {
+        System.err.println("Error counting kamar by tipe: " + ex.getMessage());
+    }
+    return 0;
+}
+
 }
