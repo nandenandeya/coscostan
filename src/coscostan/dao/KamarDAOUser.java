@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 
-public class KamarDAOUser extends KamarDAO {
+public class KamarDAOUser {
     
     /**
      * Method khusus untuk UserDashboard - ambil data kamar yang tersedia dengan JOIN yang benar
@@ -18,7 +18,6 @@ public class KamarDAOUser extends KamarDAO {
         List<Kamar> kamarList = new ArrayList<>();
         
         try {
-            // Query dengan JOIN yang sesuai struktur database
             String sql = "SELECT k.id_kamar, k.nomor_kamar, k.status, " +
                         "tk.tipe_kamar, tk.harga_sewa, tk.lama_sewa, tk.ukuran, tk.fasilitas_kamar " +
                         "FROM kamars k " +
@@ -42,7 +41,7 @@ public class KamarDAOUser extends KamarDAO {
                     
                     // Data dari tabel tipe_kamar
                     kamar.setTipeKamar(rs.getString("tipe_kamar"));
-                    kamar.setHarga(rs.getDouble("harga_sewa")); // harga_sewa di database
+                    kamar.setHarga(rs.getDouble("harga_sewa"));
                     kamar.setLamaSewa(rs.getString("lama_sewa"));
                     
                     // Field tambahan jika diperlukan

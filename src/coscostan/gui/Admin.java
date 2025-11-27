@@ -1,6 +1,6 @@
 package coscostan.gui;
 
-import gui.AdminLogin;
+import coscostan.gui.AdminLogin;
 import coscostan.dao.KamarDAO;
 import coscostan.dao.PenghuniDAO;
 import coscostan.dao.TipeKamarDAO;
@@ -33,28 +33,22 @@ public class Admin extends javax.swing.JFrame {
         updateDashboardStatistics();
         initTambahKamarForm();
         resetAllButtons();
-        loadPenghuniDataToTable();     // Untuk tab statistik penghuni
-        updatePenghuniStatistics();    // Untuk tab statistik penghuni
+        loadPenghuniDataToTable();     
+        updatePenghuniStatistics();    
     }
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Admin.class.getName());
 
-    /**
-     * Creates new form Admin
-     */
     public Admin() {
         initComponents();
     }
     
     private void initTambahKamarForm() {
-        // Kosongkan field input
     nomorKamarBaruLabel.setText("");
     statusKamarBaruComboBox.setSelectedIndex(0);
     
-    // Load data tipe kamar ke combo box
     loadTipeKamarToComboBox();
     
-    // Update label ID kamar
     updateIdKamarBaruLabel();
     }
     
@@ -1273,7 +1267,6 @@ public class Admin extends javax.swing.JFrame {
                 if (success) {
                     JOptionPane.showMessageDialog(this, "Data berhasil dihapus!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
-                    // Reset form
                     resetSearchForm();
                     resetAllButtons();
 
@@ -1291,14 +1284,13 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_hapusKamarButtonActionPerformed
 
     private void batalPerubahanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalPerubahanActionPerformed
-        // Reload data asli dari database
+        // Reload data dari database
         if (currentKamarId > 0) {
             // Panggil lagi method cari untuk reload data original
             cariIDKamar.setText(String.valueOf(currentKamarId));
             cariButtonActionPerformed(evt);
         }
 
-        // Kembalikan ke state normal
         resetTableToReadOnly();
         setEditDeleteButtonsEnabled(true);
         setSaveCancelButtonsEnabled(false);
@@ -1350,13 +1342,13 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_simpanPerubahanKamarActionPerformed
 
     private void ubahKamarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahKamarButtonActionPerformed
-        // Aktifkan mode edit - buat kolom status menjadi editable
+        // Aktifkan mode edit buat kolom status jadi editable
         DefaultTableModel model = (DefaultTableModel) tabelHasilPencarian.getModel();
 
         // Buat combo box untuk kolom status
         JComboBox<String> statusComboBox = new JComboBox<>(new String[]{"tersedia", "terisi", "maintenance"});
 
-        // Set cell editor untuk kolom status (kolom index 4)
+        // Set cell editor untuk kolom status (kolom index 4 alias status)
         tabelHasilPencarian.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(statusComboBox));
 
         // Aktifkan button simpan/batal, non-aktifkan edit/hapus
@@ -1395,11 +1387,11 @@ public class Admin extends javax.swing.JFrame {
         String status = (String) statusKamarBaruComboBox.getSelectedItem();
         String selectedTipe = (String) IDTipeKamarBaruComboBox.getSelectedItem();
         
-        // Debug: Check predicted ID
+        // Buat Debug: Check predicted ID
         String labelText = idKamarBaruLabel.getText();
-        System.out.println("Label text: " + labelText); // Debug
+        System.out.println("Label text: " + labelText); 
         
-        // Handle case jika label menunjukkan error
+        // Handle case kalau label return error
         if (labelText.contains("Error")) {
             JOptionPane.showMessageDialog(this, 
                 "Tidak dapat memprediksi ID. Silakan refresh form.", 
@@ -1408,16 +1400,16 @@ public class Admin extends javax.swing.JFrame {
             return;
         }
         
-        // Extract predicted ID dengan lebih aman
+        // Extract predicted ID 
         String predictedIdText = labelText.replace("Auto generate : ", "").trim();
-        System.out.println("Predicted ID text: " + predictedIdText); // Debug
+        System.out.println("Predicted ID text: " + predictedIdText); 
         
         int predictedId;
         try {
             predictedId = Integer.parseInt(predictedIdText);
         } catch (NumberFormatException ex) {
-            // Jika gagal parse, gunakan prediksi sederhana
-            predictedId = 0; // Akan diganti oleh auto-increment database
+            // Jika gagal, gunakan prediksi sederhana alias auto-increment database
+            predictedId = 0;
         }
         
         // Konfirmasi sebelum save (tanpa predicted ID jika 0)
@@ -1449,7 +1441,6 @@ public class Admin extends javax.swing.JFrame {
         boolean success = kamarDAO.insert(kamarBaru);
         
         if (success) {
-            // Get actual ID yang di-generate oleh database
             Kamar kamarYangBaruDitambah = kamarDAO.getByNomorKamar(nomorKamar);
             int actualId = kamarYangBaruDitambah != null ? kamarYangBaruDitambah.getIdKamar() : 0;
             

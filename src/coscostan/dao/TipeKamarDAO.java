@@ -152,4 +152,23 @@ public class TipeKamarDAO implements DAO<TipeKamar> {
             return false;
         }
     }
+    
+    public List<String> getAllTipeKamarOnly() {
+        List<String> tipeList = new ArrayList<>();
+        String sql = "SELECT tipe_kamar FROM tipe_kamar ORDER BY tipe_kamar";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                tipeList.add(rs.getString("tipe_kamar"));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println("Error getting tipe kamar only: " + ex.getMessage());
+        }
+
+        return tipeList;
+    }
 }
